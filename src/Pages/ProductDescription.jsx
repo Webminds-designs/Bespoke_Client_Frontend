@@ -202,7 +202,7 @@ export default function ProductDescription() {
               </h1>
               <p className="text-secondary-100 text-[18px] mb-2">by Artisan</p>
               <p className="text-3xl font-bold text-secondary-100 bg-brown-100 w-32 py-1 self-center rounded-lg">
-                ${productData.price}
+                Rs: {productData.price}
               </p>
               <p className="text-secondary-100 mt-4 ">
                 {productData.description}
@@ -228,7 +228,7 @@ export default function ProductDescription() {
                   Price
                 </span>
                 <span className="bg-secondary-200 px-4 py-2 rounded-lg text-secondary-100 font-bold">
-                  ${productData.price * quantity}
+                  Rs: {productData.price * quantity}
                 </span>
               </div>
               {/* Add to Cart Button */}

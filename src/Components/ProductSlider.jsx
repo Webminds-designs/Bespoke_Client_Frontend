@@ -102,7 +102,7 @@ export default function ProductSlider({ category }) {
                       {product.name}
                     </h3>
                     <p className="text-base md:text-xl font-bold">
-                      ${product.price}
+                      Rs: {product.price}
                     </p>
                   </div>
                 ))}
