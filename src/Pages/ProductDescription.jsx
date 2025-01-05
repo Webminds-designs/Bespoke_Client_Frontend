@@ -328,7 +328,7 @@ export default function ProductDescription() {
               <p className="text-secondary-100 mt-4 ">
                 {productData.description}
               </p>
-              <div className="flex items-center mt-6">
+              {/* <div className="flex items-center mt-6">
                 <span className="text-secondary-100 font-semibold">
                   Available:
                 </span>
@@ -341,7 +341,7 @@ export default function ProductDescription() {
                     Out of stock
                   </span>
                 )}
-              </div>
+              </div> */}
 
               {/* Total Price */}
               <div className="flex items-center mt-6">
