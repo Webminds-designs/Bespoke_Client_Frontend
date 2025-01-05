@@ -163,7 +163,7 @@ export default function ProductDescription() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            {productData._id !== "677a650ead3bb7ddb71edb70" ? (
+            {productData._id !== "677a8f57ad3bb7ddb71ee7f7" ? (
               <>
                 {/* Main Product Image */}
                 <div
