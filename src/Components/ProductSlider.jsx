@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import PropTypes from "prop-types";
 import { get } from "../../Services/ApiEndPoint";
+import { Link } from "react-router-dom";
 
 export default function ProductSlider({ category }) {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
@@ -85,26 +86,27 @@ export default function ProductSlider({ category }) {
                 style={{ flex: "0 0 100%" }}
               >
                 {slide.map((product) => (
-                  <div
-                    key={product._id}
-                    className="flex flex-col items-center p-4 w-full max-w-xs"
-                  >
-                    <img
-                      src={
-                        product.images[0]?.url ||
-                        "https://via.placeholder.com/300"
-                      }
-                      alt={product.name}
-                      className="rounded-lg w-full h-64 object-cover mb-4"
-                      draggable="false"
-                    />
-                    <h3 className="text-sm md:text-lg font-semibold">
-                      {product.name}
-                    </h3>
-                    <p className="text-base md:text-xl font-bold">
-                      Rs: {product.price}
-                    </p>
-                  </div>
+                  <React.Fragment key={product._id}>
+                    <Link to={`/product-description/${product._id}`}>
+                      <div className="flex flex-col items-center p-4 w-full max-w-xs">
+                        <img
+                          src={
+                            product.images[0]?.url ||
+                            "https://via.placeholder.com/300"
+                          }
+                          alt={product.name}
+                          className="rounded-lg w-full h-64 object-cover mb-4"
+                          draggable="false"
+                        />
+                        <h3 className="text-sm md:text-lg font-semibold">
+                          {product.name}
+                        </h3>
+                        <p className="text-base md:text-xl font-bold">
+                          Rs: {product.price}
+                        </p>
+                      </div>
+                    </Link>
+                  </React.Fragment>
                 ))}
               </div>
             ))}

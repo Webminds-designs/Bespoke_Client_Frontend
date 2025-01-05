@@ -23,7 +23,7 @@ export default function ProductList() {
         }}
       >
         <div className="w-full h-full bg-black rounded-3xl opacity-30 absolute"></div>
-        <div className="w-[30rem] h-fill absolute right-8 bottom-16 text-right text-primary text-7xl">
+        <div className="w-[15rem] md:w-[30rem] h-fill absolute right-4 md:right-8 bottom-16 text-right text-primary text-wrap text-5xl md:text-7xl">
           Discover Bespoke Elegance
         </div>
       </motion.div>

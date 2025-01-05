@@ -20,7 +20,10 @@ export default function ProductDescription() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize navigate
-
+  const [coffeTableHover, setCoffeTableHover] = useState(false);
+  const [endTableHover, setEndTableHover] = useState(false);
+  const [barStoolsHover, setBarStoolsHover] = useState(false);
+  const [hoverText, setHoverText] = useState("");
   // Fetch product by ID
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,6 +43,11 @@ export default function ProductDescription() {
 
     fetchProduct();
   }, [id]);
+
+  const handleRingForPrice = () => {
+    toast.success("Calling the vendor..."); // Show a toast notification
+    window.location.href = "tel:+94777866400"; // Replace with the actual phone number
+  };
 
   const handleAddToCart = async () => {
     try {
@@ -124,11 +132,25 @@ export default function ProductDescription() {
       </motion.div>
     );
   }
+  const handleImgePartHover = (text, id) => {
+    if (id === "1") {
+      setCoffeTableHover(text !== "");
+      console.log(text);
+      console.log(id);
+      setHoverText(text);
+    } else if (id === "2") {
+      setEndTableHover(text !== "");
+      setHoverText(text);
+    } else if (id === "3") {
+      setBarStoolsHover(text !== "");
+      setHoverText(text);
+    }
+  };
 
   return (
     <>
       <motion.div
-        className="min-h-screen flex items-center justify-center "
+        className="min-h-screen flex items-center justify-center mt-10 "
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
@@ -141,32 +163,131 @@ export default function ProductDescription() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            {/* Main Product Image */}
-            <div
-              className="w-full h-auto relative rounded-lg overflow-hidden"
-              style={{ height: "500px" }}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-            >
-              <img
-                src={mainImage}
-                alt="Product"
-                className="rounded-lg object-cover w-full h-full"
-                style={zoomStyle.backgroundImage ? { opacity: 0 } : {}}
-                draggable="false"
-              />
-              {zoomStyle.backgroundImage && (
+            {productData._id !== "677a650ead3bb7ddb71edb70" ? (
+              <>
+                {/* Main Product Image */}
                 <div
-                  className="absolute inset-0 rounded-lg"
-                  style={{
-                    backgroundImage: zoomStyle.backgroundImage,
-                    backgroundPosition: zoomStyle.backgroundPosition,
-                    backgroundSize: zoomStyle.backgroundSize,
-                    height: "100%",
-                  }}
-                ></div>
-              )}
-            </div>
+                  className="w-full h-auto relative rounded-lg overflow-hidden"
+                  style={{ height: "500px" }}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <img
+                    src={mainImage}
+                    alt="Product"
+                    className="rounded-lg object-cover w-full h-full"
+                    style={zoomStyle.backgroundImage ? { opacity: 0 } : {}}
+                    draggable="false"
+                  />
+                  {zoomStyle.backgroundImage && (
+                    <div
+                      className="absolute inset-0 rounded-lg"
+                      style={{
+                        backgroundImage: zoomStyle.backgroundImage,
+                        backgroundPosition: zoomStyle.backgroundPosition,
+                        backgroundSize: zoomStyle.backgroundSize,
+                        height: "100%",
+                      }}
+                    ></div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Main Product Image */}
+                <div
+                  className="w-full h-auto relative rounded-lg overflow-hidden"
+                  style={{ height: "500px" }}
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <img
+                    src={mainImage}
+                    alt="Product"
+                    className="rounded-lg object-cover  w-full h-full "
+                    draggable="false"
+                  />
+                  <div className=" absolute  bottom-2 left-1/2 ">
+                    {coffeTableHover ? (
+                      <motion.div
+                        className="bg-white p-2 opacity-80 font-bold tracking-wide tetx-sm md:text-xl text-secondary-100 rounded mb-4 translate-x-2
+                      transition-all duration-300"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {hoverText}
+                      </motion.div>
+                    ) : null}
+
+                    <div
+                      className="bg-secondary-100 opacity-50 border-white text-white border-[3px] z-10 rounded-full w-12 h-12 text-md leading-3 text-center cursor-pointer hover:bg-secondary-100 hover:text-white transition-all duration-300 flex items-center justify-center"
+                      onMouseOver={() =>
+                        handleImgePartHover("Wooden Coffe Table", "1")
+                      }
+                      onMouseLeave={() => handleImgePartHover("", "1")}
+                      onTouchStart={() =>
+                        handleImgePartHover("Wooden Coffe Table", "1")
+                      }
+                      onTouchEnd={() => handleImgePartHover("", "1")}
+                    >
+                      Hover me
+                    </div>
+                  </div>
+                  <div className=" absolute  bottom-[130px] left-[220px] md:left-1/2">
+                    {endTableHover ? (
+                      <motion.div
+                        className="bg-white p-2 opacity-80 font-bold tracking-wide tetx-sm md:text-xl text-secondary-100 rounded mb-4 translate-x-2
+                      transition-all duration-300"
+                        initial={{ opacity: 0, y: 30, x: 0 }}
+                        whileInView={{ opacity: 1, y: -10, x: 20 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {hoverText}
+                      </motion.div>
+                    ) : null}
+
+                    <div
+                      className="bg-secondary-100 opacity-50 border-white text-white border-[3px] z-10 rounded-full w-12 h-12 text-md leading-3 text-center cursor-pointer hover:bg-secondary-100 hover:text-white transition-all duration-300 flex items-center justify-center"
+                      onMouseOver={() =>
+                        handleImgePartHover("Wooden End Table", "2")
+                      }
+                      onMouseLeave={() => handleImgePartHover("", "2")}
+                      onTouchStart={() =>
+                        handleImgePartHover("Wooden End Table", "2")
+                      }
+                      onTouchEnd={() => handleImgePartHover("", "2")}
+                    >
+                      Hover me
+                    </div>
+                  </div>
+                  <div className=" absolute  bottom-[110px] right-10 md:block hidden">
+                    {barStoolsHover ? (
+                      <motion.div
+                        className="bg-white p-2  absolute -left-10 opacity-80 font-bold tracking-wide tetx-sm md:text-xl text-secondary-100 rounded mb-2 "
+                        initial={{ opacity: 0, x: 0, y: 0 }}
+                        whileInView={{ opacity: 1, x: -20, y: -50 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {hoverText}
+                      </motion.div>
+                    ) : null}
+
+                    <div
+                      className="bg-secondary-100 opacity-50 border-white text-white border-[3px] z-10 rounded-full w-12 h-12 text-md leading-3 text-center cursor-pointe flex items-center justify-center cursor-pointer"
+                      onMouseOver={() => handleImgePartHover("Bar Stools", "3")}
+                      onMouseLeave={() => handleImgePartHover("", "3")}
+                      onTouchStart={() =>
+                        handleImgePartHover("Bar Stools", "3")
+                      }
+                      onTouchEnd={() => handleImgePartHover("", "3")}
+                    >
+                      Hover me
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
             {/* Thumbnails */}
             <div className="flex justify-start w-full gap-4 mt-4">
               {productData.images?.map((image, index) => (
@@ -201,9 +322,9 @@ export default function ProductDescription() {
                 {productData.name}
               </h1>
               <p className="text-secondary-100 text-[18px] mb-2">by Artisan</p>
-              <p className="text-3xl font-bold text-secondary-100 bg-brown-100 w-32 py-1 self-center rounded-lg">
-                Rs: {productData.price}
-              </p>
+              {/* <p className="text-3xl font-bold text-secondary-100 bg-brown-100 w-32 py-1 self-center rounded-lg">
+                Ring for the price
+              </p> */}
               <p className="text-secondary-100 mt-4 ">
                 {productData.description}
               </p>
@@ -227,8 +348,11 @@ export default function ProductDescription() {
                 <span className="text-secondary-100 font-semibold mr-4">
                   Price
                 </span>
-                <span className="bg-secondary-200 px-4 py-2 rounded-lg text-secondary-100 font-bold">
-                  Rs: {productData.price * quantity}
+                <span
+                  className="bg-secondary-100 text-white tracking-widest px-4 py-2 rounded-lg font-bold cursor-pointer "
+                  onClick={handleRingForPrice}
+                >
+                  Ring for the detailed quote
                 </span>
               </div>
               {/* Add to Cart Button */}
