@@ -349,7 +349,7 @@ export default function ProductDescription() {
                   Price
                 </span>
                 <span
-                  className="bg-secondary-100 text-white tracking-widest px-4 py-2 rounded-lg font-bold cursor-pointer "
+                  className="bg-secondary-100 text-white tracking-widest px-4 py-2 rounded-lg font-bold cursor-pointer text-sm md:text-base"
                   onClick={handleRingForPrice}
                 >
                   Ring for the detailed quote
